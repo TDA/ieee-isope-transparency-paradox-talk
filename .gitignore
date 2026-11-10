@@ -1,4 +1,10 @@
-# Keep this public repository limited to the final conference deck.
+# Keep this public repository limited to the conference deck and paper delivery.
 *
 !.gitignore
 !The-Transparency-Paradox-ISOPE-2026-Submission.pptx
+!submission/
+!submission/README.md
+!submission/extended-paper.md
+!submission/inspect_c2pa.py
+!submission/The-Transparency-Paradox-Extended-Abstract.docx
+!submission/The-Transparency-Paradox-Extended-Abstract.pdf

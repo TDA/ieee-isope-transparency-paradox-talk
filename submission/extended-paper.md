@@ -6,7 +6,7 @@ Meta Platforms, Inc.
 
 ### Abstract
 
-Cryptographic provenance can help verifiers assess claims about the origin and editing history of digital media, while exposing information beyond their integrity needs. A newsroom may need to inspect a source's evidence privately; but publishing that evidence can reveal identity, location, or workflow. We examine this transparency paradox through a purpose-bound disclosure framework. A June 2026 synthetic corpus of one million outputs from ten public AI tools provides deployment context: more than 14% carried conformant C2PA packets with readable AI provenance. We distinguish validation, disclosure, and propagation, and define four disclosure tiers ranging from an AI-involvement signal to a restricted provenance chain. We explain how existing C2PA mechanisms can support these policies, then develop newsroom and platform workflows that publish narrow attestations while governing access to richer evidence. Academic integrity illustrates why technical tool history also needs contextual interpretation. The contribution is a practical framework for matching disclosures to a verifier's task and the privacy expectations of the people represented in the record.
+Cryptographic provenance can help verifiers assess claims about the origin and editing history of digital media, while exposing information beyond their integrity needs. A newsroom may need to inspect a source's evidence privately; but publishing that evidence can reveal identity, location, or workflow. We examine this transparency paradox through a purpose-bound disclosure framework. A June 2026 synthetic corpus of one million outputs from ten public AI tools provides deployment context: more than 14% carried conformant C2PA packets with readable AI provenance. We distinguish validation, disclosure, and propagation, and define four disclosure tiers ranging from an AI-involvement signal to a restricted provenance chain. We explain how existing C2PA mechanisms can support these policies, then develop newsroom and platform workflows that publish narrow attestations while governing access to richer evidence. The contribution is a practical framework for matching disclosures to a verifier's task and the privacy expectations of the people represented in the record.
 
 **Index Terms** - AI provenance, C2PA, contextual integrity, data minimization, selective disclosure, privacy expectations
 
@@ -53,7 +53,7 @@ The accompanying Python helper applies this inspection to explicit file paths an
 
 The creator, the person depicted, the original source, and the signer may be different people or organizations. Creators make attribution choices, sources may require confidentiality, and depicted people can face exposure of their identity or location. A creator who chooses to attach attribution cannot necessarily authorize disclosure about another person. The signer warrants a stated claim under its process; the verifier needs scoped authority to receive supporting information. A receiving system must identify whose information each field describes as well as what the field contributes to its task.
 
-The verifier's question determines the relevant claim. Personal scam defense may use an AI-use signal as one input to further assessment, but that signal cannot establish whether a message is deceptive. A platform's labeling task may require a content category. Newsroom interpretation may require the type of edit; source authentication may require restricted access to richer evidence. An internal audit or legal process can justify additional access only under its applicable authority and purpose. These are contextual starting points for policy, not universal sufficiency guarantees.
+The verifier's question determines the relevant claim. Personal scam defense may use an AI-use signal as one input to further assessment, but that signal cannot establish whether a message is deceptive. A platform's labeling task may require a content category. Newsroom interpretation may require the type of edit; source authentication may require restricted access to richer evidence. An internal audit can justify additional access only under its applicable authority and purpose. These are contextual starting points for policy, not universal sufficiency guarantees.
 
 #### B The newsroom paradox
 
@@ -69,10 +69,10 @@ Table I defines Tier 0 through Tier 3. A tier specifies an authorized view of av
 
 | Tier | Authorized view | Example task and boundary |
 | --- | --- | --- |
-| 0 | Binary AI-involvement claim | Personal scam assessment or some automated compliance checks. Preserve unknown when evidence is absent or inadequate. |
+| 0 | Binary AI-involvement claim | Personal scam assessment. Preserve unknown when evidence is absent or inadequate. |
 | 1 | Category and coarse time window | General platform labeling, such as AI-generated image, Q2 2026. Omit time if category alone suffices. |
 | 2 | Tool class and action type | Newsroom interpretation or contextual labeling, such as generative fill. An action label does not establish scene truth. |
-| 3 | Available recorded provenance chain, potentially including tool identifiers and inherited metadata | Restricted source authentication, audit, or legal review. Access remains bounded by authority, relevance, and retention. |
+| 3 | Available recorded provenance chain, potentially including tool identifiers and inherited metadata | Restricted source authentication or internal audit. Access remains bounded by authority, relevance, and retention. |
 
 #### A Define the question and select the view
 
@@ -84,7 +84,7 @@ Selection should also separate the claim from its validation status. A platform 
 
 Implement the selected view at a system boundary, not only in its interface. Parse incoming manifests defensively, apply relevant validation and trust policies, and avoid copying unnecessary metadata into downstream services or logs. Authenticate recipients of restricted evidence, enforce the purpose and retention period, and record the reason for any richer access. A technically valid record does not grant permission to expose it.
 
-Escalation should identify the requester, the required additional claims, the applicable authority, and the access duration. It need not release an entire chain when only one part is relevant. Audit records themselves should be minimized: logging a full confidential manifest to demonstrate compliant access recreates the exposure that the policy was intended to prevent.
+Escalation should identify the requester, the required additional claims, the applicable authority, and the access duration. It need not release an entire chain when only one part is relevant. Audit records themselves should be minimized: logging a full confidential manifest to demonstrate authorized access recreates the exposure that the policy was intended to prevent.
 
 ### V Realizing the Policy with C2PA
 
@@ -116,10 +116,6 @@ When a transformation changes asset bytes, the platform must create the relevant
 
 ### VII Scope and Limitations
 
-Academic integrity illustrates a further interpretive limit. A student may use an LLM for grammar refinement without delegating the intellectual work. Provenance can record tool interaction where a supported workflow exists; it does not by itself attribute intellectual contribution. A disciplinary process therefore needs an explicit assistance policy, contextual evidence, and a way to contest an inference. This is an illustrative case, not a measured disciplinary outcome.
-
-Regulatory requirements also need separate interpretation. Article 50 of the EU AI Act includes machine-readable marking duties for certain providers and disclosure duties for certain deployers, with qualifications including standard editing assistance [8]. It does not mandate C2PA or a universal public relay of every provenance field. A particular redaction, transformation, or attestation must still be assessed against the applicable obligation; the tiers are not a legal compliance guarantee.
-
 The framework has not been evaluated for verification accuracy, user comprehension, privacy outcomes, or operational cost. The synthetic corpus motivates deployment relevance but does not validate tier effectiveness or quantify real-user harm. Future evaluation should examine whether each workflow's minimum view preserves its integrity decision and whether restricted evidence remains protected across publication and resharing.
 
 ### VIII Conclusion
@@ -145,5 +141,3 @@ OpenAI Codex was used to expand and organize the author's original abstract, sli
 [6] Content Authenticity Initiative, "Cloud data assertion," c2pa-rs source code. [Online]. Available: https://github.com/contentauth/c2pa-rs/blob/main/sdk/src/assertions/cloud_data.rs
 
 [7] Content Authenticity Initiative, "Redacting assertions," c2pa-rs documentation. [Online]. Available: https://github.com/contentauth/c2pa-rs/blob/main/docs/redaction.md
-
-[8] European Parliament and Council of the European Union, Regulation (EU) 2024/1689, art. 50, 2024. [Online]. Available: https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ:L_202401689

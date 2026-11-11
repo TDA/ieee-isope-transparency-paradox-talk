@@ -87,4 +87,4 @@ c2patool settings govern trust and network behavior, including possible retrieva
 
 The original abstract was supplied by the author; the presentation source is `The-Transparency-Paradox-ISOPE-2026-Submission.pptx` in the repository. Raw speaker-note transcripts, private audit records, and older drafting options are not part of this delivery.
 
-The manuscript uses C2PA specification and guidance version 2.4, matching the presentation's technical references. The newsroom, private-photo, and academic-integrity cases are illustrative. The disclosure tiers are a proposed policy framework, not a newly implemented or experimentally validated cryptographic protocol. The paper includes the verified EU AI Act Article 50 context. It omits the slides' California statutory example because the current primary statutory text could not be verified during drafting.
+The manuscript uses C2PA specification and guidance version 2.4, matching the presentation's technical references. The newsroom and private-photo cases are illustrative. The disclosure tiers are a proposed policy framework, not a newly implemented or experimentally validated cryptographic protocol.
